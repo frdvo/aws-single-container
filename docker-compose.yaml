@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+
+  jq:
+    image: imega/jq:1.6
+    env_file: .env
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+
+  terraform:
+    image: hashicorp/terraform:0.14.5
+    env_file: .env
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+
+  aws:
+    image: amazon/aws-cli:2.1.21
+    env_file: .env
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+
+  envvars:
+    image: flemay/envvars:0.0.7
+    env_file: .env
+    working_dir: /work
+    volumes:
+    - .:/work
