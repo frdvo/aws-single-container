@@ -2,7 +2,7 @@ AWS_ACCESS_KEY_ID ?=
 AWS_REGION ?=
 AWS_SECRET_ACCESS_KEY ?=
 CONTAINER_NAME ?= weather-react
-DOCKER ?= docker-compose run --rm -T
+DOCKER ?= docker-compose run --rm
 FOLDER ?= 
 REPO_URL ?= $(shell $(TF) 'cd ecr; terraform output -raw repo_url')
 WORKSPACE ?= default
@@ -21,6 +21,16 @@ build:
 	cd docker && docker build --tag ${REPO_URL}:${TAG} .
 .PHONY: build
 
+login:
+	@echo "🏗Retrieving an authentication token and authenticate your Docker client to your registry"
+	$(DOCKER) aws ecr get-login-password --region $(AWS_REGION) | docker login --username AWS --password-stdin ${REPO_URL}
+.PHONY: login
+
+push:
+	@echo "🚀📦⛅Pushing container..."
+	docker push $(REPO_URL):$(TAG)
+.PHONY: push
+
 init: .env
 	$(TF) 'cd $(FOLDER); terraform init -backend-config="dynamodb_table=$(TF_BACKEND_TABLE)" -backend-config="bucket=$(TF_BACKEND_BUCKET)"'
 .PHONY: init
@@ -38,6 +48,11 @@ plan: .env init workspace
 apply: .env init workspace
 	$(DOCKER) envvars ensure --tags terraform
 	$(TF) 'cd $(FOLDER); terraform apply'
+.PHONY: apply
+
+destroy: .env init workspace
+	$(DOCKER) envvars ensure --tags terraform
+	$(TF) 'cd $(FOLDER); terraform destroy'
 .PHONY: apply
 
 .env:
