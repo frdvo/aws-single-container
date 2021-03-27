@@ -5,6 +5,13 @@ envvars:
       - aws
       - terraform
 
+      
+  - name: AWS_PROFILE
+    desc: AWS_PROFILE
+    tags:
+      - aws
+      - terraform
+
   - name: AWS_SECRET_ACCESS_KEY
     desc: AWS_SECRET_ACCESS_KEY
     tags:
@@ -17,15 +24,21 @@ envvars:
       - aws
       - terraform
 
-  - name: TF_BACKEND_BUCKET
-    desc: TF_BACKEND_BUCKET
+  - name: FOLDER
+    desc: FOLDER 
     tags:
+      - aws
       - terraform
 
-  - name: TF_BACKEND_TABLE
-    desc: TF_BACKEND_TABLE
-    tags:
-      - terraform
+  # - name: TF_BACKEND_BUCKET
+  #   desc: TF_BACKEND_BUCKET
+  #   tags:
+  #     - terraform
+
+  # - name: TF_BACKEND_TABLE
+  #   desc: TF_BACKEND_TABLE
+  #   tags:
+  #     - terraform
 
 tags:
   - name: terraform
