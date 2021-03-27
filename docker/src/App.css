@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.pin {
+
+  width: 22px;
+  height: 22px;
+  border-radius: 50% 50% 50% 0;
+  background: #c9532f;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+
+ 
+}
+
+
+
+
+  
