@@ -1,6 +1,4 @@
-output "ecr" {
+output "repo_url" {
   description = "Get AWS ECR URL"
-  value = {
-    repository_url = aws_ecr_repository.ecr.repository_url
-  }
+  value =  aws_ecr_repository.ecr.repository_url
 }
