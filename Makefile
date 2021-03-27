@@ -1,7 +1,6 @@
 AWS_ACCESS_KEY_ID ?=
 AWS_REGION ?=
 AWS_SECRET_ACCESS_KEY ?=
-CONTAINER_NAME ?= weather-react
 DOCKER ?= docker-compose run --rm
 FOLDER ?= 
 REPO_URL ?= $(shell $(TF) 'cd ecr; terraform output -raw repo_url')
@@ -10,6 +9,7 @@ TAG ?= $(shell git rev-parse --short HEAD)
 TF ?= docker-compose run --rm -T terraform sh -c
 TF_BACKEND_BUCKET ?= $(shell $(TF) 'cd backend; terraform output -raw bucket')
 TF_BACKEND_TABLE ?= $(shell $(TF) 'cd backend; terraform output -raw dynamodb_table')
+TF_VAR_container_name ?= 
 
 backend:
 	echo "Ensuring backend is configured"

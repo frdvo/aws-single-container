@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "backend" {
-  name           = "terraform-backend-s3-${random_id.backend.dec}"
+  name           = "terraform-backend-s3-${random_id.backend.hex}"
   hash_key       = "LockID"
   read_capacity  = 1
   write_capacity = 1

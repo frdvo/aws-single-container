@@ -30,15 +30,10 @@ envvars:
       - aws
       - terraform
 
-  # - name: TF_BACKEND_BUCKET
-  #   desc: TF_BACKEND_BUCKET
-  #   tags:
-  #     - terraform
-
-  # - name: TF_BACKEND_TABLE
-  #   desc: TF_BACKEND_TABLE
-  #   tags:
-  #     - terraform
+  - name: TF_VAR_container_name
+    desc: CONTAINER_NAME
+    tags:
+      - terraform
 
 tags:
   - name: terraform
